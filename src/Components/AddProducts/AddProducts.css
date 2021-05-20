@@ -1,0 +1,16 @@
+.AddButton {
+    margin-left: 1rem;
+}
+
+.AddContainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin:auto;
+    width: 50vw;
+    flex-direction: column;
+    align-items: center;
+}
+
+.AddContainer > div {
+    margin-top: 1rem;
+}

@@ -1,23 +1,29 @@
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
 import './App.css';
+import ProductContainer from './Components/ProductContainer';
 
 function App() {
+  const [lapmodels, setLapModels] = useState([]);
+  const [lapconfigs, setLapConfigs] = useState([]);
+  
+  useEffect(() => {
+    fetch("http://localhost:5000/search/lapmodels")
+    .then(response => response.json())
+    .then((result) => {
+      setLapModels(result.lapModels);
+    });
+
+    fetch("http://localhost:5000/search/lapconfigs")
+    .then(response => response.json())
+    .then((result) => {
+      setLapConfigs(result.lapconfigs);
+    });
+
+  },[]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <ProductContainer products={lapmodels} configs={lapconfigs} />
     </div>
   );
 }
